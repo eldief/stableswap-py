@@ -1,5 +1,4 @@
-import utils
-from stableswap import Stableswap
+from stableswap import Stableswap, rate_multiplier, ADDRESS_ZERO
 
 DECIMALS_USDC = 6
 ADDRESS_USDC = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'.lower()
@@ -11,8 +10,8 @@ pool = Stableswap()
 
 def init_pool():
     pool.initialize(
-        _coins=[ADDRESS_USDC, ADDRESS_CRVUSD, utils.ADDRESS_ZERO, utils.ADDRESS_ZERO], 
-        _rate_multipliers=[utils.rate_multiplier(DECIMALS_USDC), utils.rate_multiplier(DECIMALS_CRVUSD), 0, 0], 
+        _coins=[ADDRESS_USDC, ADDRESS_CRVUSD, ADDRESS_ZERO, ADDRESS_ZERO], 
+        _rate_multipliers=[rate_multiplier(DECIMALS_USDC), rate_multiplier(DECIMALS_CRVUSD), 0, 0], 
         _A=500, 
         _fee=10 ** 6, 
         block_timestamp=1684066067
