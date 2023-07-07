@@ -1,5 +1,27 @@
-import utils
+UINT_256_MAX = 115792089237316195423570985008687907853269984665640564039457584007913129639935
+ADDRESS_ZERO = "0x0000000000000000000000000000000000000000".lower()
 
+def rate_multiplier(decimals):
+    return 10 ** (36 - decimals)
+
+def unsafe_div(a, b):
+    return int(a // b)
+
+def unsafe_mul(a, b):
+    return int(a * b)
+
+def unsafe_add(a, b):
+    return int(a + b)
+
+def unsafe_sub(a, b):
+    return int(a - b)
+
+def shift(n, p):
+    if (p > 0):
+        return n << p
+    else:
+        return n >> (p * -1)
+    
 class Stableswap:
     # CONST
     N_COINS = 2
@@ -52,7 +74,7 @@ class Stableswap:
         """
         for i in range(self.N_COINS):
             coin = _coins[i]
-            if coin == utils.ADDRESS_ZERO:
+            if coin == ADDRESS_ZERO:
                 break
             self.coins[i] = coin
             self.rate_multipliers[i] = _rate_multipliers[i]
@@ -193,31 +215,31 @@ class Stableswap:
         if power >= 135305999368893231589:
             raise "exp overflow"
 
-        x = utils.utils.unsafe_div(utils.unsafe_mul(power, 2**96), 10**18)
+        x = unsafe_div(unsafe_mul(power, 2**96), 10**18)
 
-        k = utils.unsafe_div(
-            utils.unsafe_add(
-                utils.unsafe_div(utils.unsafe_mul(x, 2**96), 54916777467707473351141471128),
+        k = unsafe_div(
+            unsafe_add(
+                unsafe_div(unsafe_mul(x, 2**96), 54916777467707473351141471128),
                 2**95),
             2**96)
-        x = utils.unsafe_sub(x, utils.unsafe_mul(k, 54916777467707473351141471128))
+        x = unsafe_sub(x, unsafe_mul(k, 54916777467707473351141471128))
 
-        y = utils.unsafe_add(x, 1346386616545796478920950773328)
-        y = utils.unsafe_add(utils.unsafe_div(utils.unsafe_mul(y, x), 2**96), 57155421227552351082224309758442)
-        p = utils.unsafe_sub(utils.unsafe_add(y, x), 94201549194550492254356042504812)
-        p = utils.unsafe_add(utils.unsafe_div(utils.unsafe_mul(p, y), 2**96), 28719021644029726153956944680412240)
-        p = utils.unsafe_add(utils.unsafe_mul(p, x), (4385272521454847904659076985693276 * 2**96))
+        y = unsafe_add(x, 1346386616545796478920950773328)
+        y = unsafe_add(unsafe_div(unsafe_mul(y, x), 2**96), 57155421227552351082224309758442)
+        p = unsafe_sub(unsafe_add(y, x), 94201549194550492254356042504812)
+        p = unsafe_add(unsafe_div(unsafe_mul(p, y), 2**96), 28719021644029726153956944680412240)
+        p = unsafe_add(unsafe_mul(p, x), (4385272521454847904659076985693276 * 2**96))
 
         q = x - 2855989394907223263936484059900
-        q = utils.unsafe_add(utils.unsafe_div(utils.unsafe_mul(q, x), 2**96), 50020603652535783019961831881945)
-        q = utils.unsafe_sub(utils.unsafe_div(utils.unsafe_mul(q, x), 2**96), 533845033583426703283633433725380)
-        q = utils.unsafe_add(utils.unsafe_div(utils.unsafe_mul(q, x), 2**96), 3604857256930695427073651918091429)
-        q = utils.unsafe_sub(utils.unsafe_div(utils.unsafe_mul(q, x), 2**96), 14423608567350463180887372962807573)
-        q = utils.unsafe_add(utils.unsafe_div(utils.unsafe_mul(q, x), 2**96), 26449188498355588339934803723976023)
+        q = unsafe_add(unsafe_div(unsafe_mul(q, x), 2**96), 50020603652535783019961831881945)
+        q = unsafe_sub(unsafe_div(unsafe_mul(q, x), 2**96), 533845033583426703283633433725380)
+        q = unsafe_add(unsafe_div(unsafe_mul(q, x), 2**96), 3604857256930695427073651918091429)
+        q = unsafe_sub(unsafe_div(unsafe_mul(q, x), 2**96), 14423608567350463180887372962807573)
+        q = unsafe_add(unsafe_div(unsafe_mul(q, x), 2**96), 26449188498355588339934803723976023)
 
-        return utils.shift(
-            utils.unsafe_mul(utils.unsafe_div(p, q), 3822833074963236453042738258902158003155416615667),
-            utils.unsafe_sub(k, 195))
+        return shift(
+            unsafe_mul(unsafe_div(p, q), 3822833074963236453042738258902158003155416615667),
+            unsafe_sub(k, 195))
 
     # @internal
     # @view

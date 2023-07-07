@@ -7,7 +7,7 @@ setup(
     url="https://github.com/eldief/stableswappy",
     author="eldief",
     license="MIT", 
-    packages=["."],  
+    packages=["stableswappy"],  
     install_requires=[],  
     zip_safe=False 
 )
