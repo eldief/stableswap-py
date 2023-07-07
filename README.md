@@ -13,6 +13,9 @@ Import Stableswap and utils in your project
 
 Create new Stableswap and initialize:
 ```
+    DECIMALS_USDC = 6
+    DECIMALS_CRVUSD = 18
+
     pool = Stableswap()
     pool.initialize(
         _coins=[ADDRESS_USDC, ADDRESS_CRVUSD, ADDRESS_ZERO, ADDRESS_ZERO], 
@@ -27,6 +30,7 @@ Simulate execution:
 ```
     DECIMALS_USDC = 6
     DECIMALS_CRVUSD = 18
+
     amounts = [250000 * 10 ** DECIMALS_USDC, 250000 * 10 ** DECIMALS_CRVUSD]
     pool.add_liquidity(block_timestamp=1684066067 + 1, _amounts=amounts)
 ```
