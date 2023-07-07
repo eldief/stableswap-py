@@ -1,5 +1,4 @@
 UINT_256_MAX = 115792089237316195423570985008687907853269984665640564039457584007913129639935
-
 ADDRESS_ZERO = "0x0000000000000000000000000000000000000000".lower()
 
 def rate_multiplier(decimals):
@@ -22,3 +21,4 @@ def shift(n, p):
         return n << p
     else:
         return n >> (p * -1)
+    

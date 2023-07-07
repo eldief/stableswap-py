@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     author="eldief",
     author_email="",
-    description="A short description of your package",
+    description="Python Curve Stableswap implementation",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url="https://github.com/eldief/stableswap-py",
