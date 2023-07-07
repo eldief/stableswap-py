@@ -1,4 +1,4 @@
-# stableswap-py
+# stableswappy
 Curve Stableswap translated to python, no external dependencies needed
 
 ## Usage
