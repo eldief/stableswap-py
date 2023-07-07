@@ -1,13 +1,13 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="stableswappy",
-    version="0.1",
-    packages=find_packages(),
-    author="eldief",
-    author_email="",
+    version="1.0",
     description="Python Curve Stableswap implementation",
-    long_description=open('README.md').read(),
-    long_description_content_type='text/markdown',
-    url="https://github.com/eldief/stableswap-py",
+    url="https://github.com/eldief/stableswappy",
+    author="eldief",
+    license="MIT", 
+    packages=["."],  
+    install_requires=[],  
+    zip_safe=False 
 )
