@@ -23,43 +23,37 @@ def shift(n, p):
         return n >> (p * -1)
     
 class Stableswap:
-    # CONST
-    N_COINS = 2
-    N_COINS_128 = 2
-    PRECISION = 10 ** 18
-    ADMIN_ACTIONS_DEADLINE_DT = 86400 * 3
-
-    FEE_DENOMINATOR = 10 ** 10
-    ADMIN_FEE = 5000000000
-
-    A_PRECISION = 100
-    MAX_FEE = 5 * 10 ** 9
-    MAX_A = 10 ** 6
-    MAX_A_CHANGE = 10
-    MIN_RAMP_TIME = 86400
-
-    coins = [0 for _ in range(N_COINS)]
-    balances = [0 for _ in range(N_COINS)]
-    fee = 0  # fee * 1e10
-    future_fee = 0
-    admin_action_deadline = 0
-
-    initial_A = 0
-    future_A = 0
-    initial_A_time = 0
-    future_A_time = 0
-
-    rate_multipliers = [0 for _ in range(N_COINS)]
-
-    totalSupply = 0
-    unpacked_last_price = 0
-    unpacked_ma_price = 0
-    ma_exp_time = 0
-    ma_last_time = 0
-
-    # @external
     def __init__(self):
-        self.factory = "0x0000000000000000000000000000000000000001"
+        self.N_COINS = 2
+        self.N_COINS_128 = 2
+        self.PRECISION = 10 ** 18
+        self.ADMIN_ACTIONS_DEADLINE_DT = 86400 * 3
+        self.FEE_DENOMINATOR = 10 ** 10
+        self.ADMIN_FEE = 5000000000
+        self.A_PRECISION = 100
+        self.MAX_FEE = 5 * 10 ** 9
+        self.MAX_A = 10 ** 6
+        self.MAX_A_CHANGE = 10
+        self.MIN_RAMP_TIME = 86400
+        
+        self.coins = [0 for _ in range(self.N_COINS)]
+        self.balances = [0 for _ in range(self.N_COINS)]
+        self.fee = 0  # fee * 1e10
+        self.future_fee = 0
+        self.admin_action_deadline = 0
+
+        self.initial_A = 0
+        self.future_A = 0
+        self.initial_A_time = 0
+        self.future_A_time = 0
+
+        self.rate_multipliers = [0 for _ in range(self.N_COINS)]
+
+        self.totalSupply = 0
+        self.unpacked_last_price = 0
+        self.unpacked_ma_price = 0
+        self.ma_exp_time = 0
+        self.ma_last_time = 0
 
     # @external
     def initialize(self, _coins, _rate_multipliers, _A, _fee, block_timestamp):
